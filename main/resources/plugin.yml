@@ -1,0 +1,14 @@
+name: MonsterHamster
+version: ${project.version}
+main: com.gmail.nayra.MonsterHamster
+authors: [ Nayra ]
+description: Go hunt bosses and get rewards
+
+commands:
+  monsterhamster:
+    description: Command
+  monstersummon:
+    description: Summon bosses
+  bosspoints:
+    description: See your points
+    aliases: [bpoints]

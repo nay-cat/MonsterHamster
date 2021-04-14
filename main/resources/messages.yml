@@ -1,0 +1,11 @@
+Messages:
+  prefix: '&b&l[MonsterHamster&b] '
+  noPermission: '&cYou dont have permissions'
+  reload: '&aPlugin reload correctly'
+  unkown: '&cUnkown parameters'
+  unkownEntity: '&cUnkown entity boss'
+  noParameters: '&cInvalid parameters'
+  spawnEntity: '&aEntity spawn - &2%entity%'
+  bossDeathBroadcast: '&cHunt Boss &4%boss%&c, killer: &6%killer%'
+  bossPoints: '&6%player%, you have &9%points% &6points'
+  noBossPoints: '&6%player%, you dont have points, &cF'

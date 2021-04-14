@@ -1,0 +1,25 @@
+Config:
+  Abilities:
+    - "lighting"
+    - "shoot"
+    - "poison"
+  Monsters:
+    examplemonster:
+      name: '&cBenja'
+      # Max Health 5000
+      health: 100.0
+      armor: 10.0
+      damage: 5.0
+      knockback_resistance: 3.0
+      speed: 2.0
+      effect_multiplier: 2
+      effects:
+        - NIGHT_VISION
+      reward: 1
+      rank_multiplier: 2
+      inventory:
+        helmet: DIAMOND_CHESTPLATE
+        chestplate: DIAMOND_HELMET
+        leggings: DIAMOND_LEGGINGS
+        boots: DIAMOND_BOOTS
+        mainhand: DIAMOND_SWORD
