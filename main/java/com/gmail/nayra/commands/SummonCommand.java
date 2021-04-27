@@ -29,7 +29,9 @@ public class SummonCommand implements CommandExecutor {
     public SummonCommand(MonsterHamster plugin) {
         this.plugin = plugin;
     }
-    BossBar bossBar;
+    
+
+
 
     public boolean onCommand(CommandSender player, Command command, String label, String[] args) {
         if (player instanceof Player) {
