@@ -12,3 +12,6 @@ commands:
   bosspoints:
     description: See your points
     aliases: [bpoints]
+  bshop:
+    description: Open the shop gui
+    aliases: [bosshop, bossshop, monsterhamstershop]

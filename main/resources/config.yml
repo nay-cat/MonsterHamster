@@ -1,4 +1,6 @@
 Config:
+  ShopGui:
+    name: "MonsterShop"
   Abilities:
     - "lighting"
     - "shoot"

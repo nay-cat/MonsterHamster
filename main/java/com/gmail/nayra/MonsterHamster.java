@@ -1,14 +1,25 @@
 package com.gmail.nayra;
 
 import com.gmail.nayra.commands.PluginCommand;
+import com.gmail.nayra.commands.ShopCommand;
 import com.gmail.nayra.commands.SummonCommand;
 import com.gmail.nayra.commands.UserCommands;
+import com.gmail.nayra.gui.DenyCatch;
+import com.gmail.nayra.gui.inventory.CreateInventory;
+import com.gmail.nayra.gui.items.InventoryItems;
 import com.gmail.nayra.listeners.KillBossListener;
 import com.gmail.nayra.property.PropertyManager;
+import com.gmail.nayra.property.enchantments.PoisonEnchantment;
 import com.gmail.nayra.utils.Local;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,6 +33,7 @@ public final class MonsterHamster extends JavaPlugin {
     private FileConfiguration messagesFileConfig;
     public String Configstr;
     public double version;
+    public Inventory shop;
 
     @Override
     public void onEnable() {
@@ -32,7 +44,16 @@ public final class MonsterHamster extends JavaPlugin {
         mainConfig();
         this.version = 1.0;
         Local.log("&6[MonsterHamster] &aThanks for using this plugin! <3 :D");
-        Local.log("&6[MonsterHamster] &9Version: &b"+version);
+        Local.log("&6[MonsterHamster] &9Version: &b" + version);
+
+        shop = Bukkit.createInventory(null, 9, getConfig().getString("Config.ShopGui.name"));
+        addingInvetoryItems();
+    }
+
+    public void addingInvetoryItems() {
+        InventoryItems itv = new InventoryItems();
+        shop.addItem(itv.createItem(Material.DIAMOND, "XD", "XD"));
+
     }
 
     @Override
@@ -40,26 +61,30 @@ public final class MonsterHamster extends JavaPlugin {
         Local.log("&6[MonsterHamster] &cDisable...");
     }
 
-    public void register(){
+    public void register() {
         PluginManager pm = getServer().getPluginManager();
         this.getCommand("monsterhamster").setExecutor(new PluginCommand(this));
         this.getCommand("monstersummon").setExecutor(new SummonCommand(this));
         this.getCommand("bosspoints").setExecutor(new UserCommands(this));
+        this.getCommand("bshop").setExecutor(new ShopCommand(this));
         pm.registerEvents(new KillBossListener(this), this);
         pm.registerEvents(new PropertyManager(this), this);
+        pm.registerEvents(new DenyCatch(this), this);
+        pm.registerEvents(new PoisonEnchantment(this), this);
 
     }
+
     private void createDataFile() {
         dataFile = new File(getDataFolder(), "data.yml");
         if (!dataFile.exists()) {
             dataFile.getParentFile().mkdirs();
             saveResource("data.yml", false);
             Local.log("&6[MonsterHamster] &2Data.yml load");
-        }else{
+        } else {
             Local.log("&6[MonsterHamster] &aData.yml created");
         }
 
-        dataFileConfig= new YamlConfiguration();
+        dataFileConfig = new YamlConfiguration();
         try {
             dataFileConfig.load(dataFile);
         } catch (IOException | InvalidConfigurationException e) {
@@ -67,12 +92,12 @@ public final class MonsterHamster extends JavaPlugin {
         }
     }
 
-    public void saveData(){
-        try{
+    public void saveData() {
+        try {
             dataFileConfig.save(dataFile);
-        }catch(IOException exception){
+        } catch (IOException exception) {
             Local.log("&6[MonsterHamster] &cCouldn't save data");
-            Local.log("&6[MonsterHamster] &cError: &4"+exception);
+            Local.log("&6[MonsterHamster] &cError: &4" + exception);
         }
     }
 
@@ -86,11 +111,11 @@ public final class MonsterHamster extends JavaPlugin {
             messagesFile.getParentFile().mkdirs();
             saveResource("messages.yml", false);
             Local.log("&6[MonsterHamster] &aMessages.yml load");
-        }else{
+        } else {
             Local.log("&6[MonsterHamster] &aMessages.yml created");
         }
 
-        messagesFileConfig= new YamlConfiguration();
+        messagesFileConfig = new YamlConfiguration();
         try {
             messagesFileConfig.load(messagesFile);
         } catch (IOException | InvalidConfigurationException e) {
@@ -105,7 +130,7 @@ public final class MonsterHamster extends JavaPlugin {
             getConfig().options().copyDefaults(true);
             saveConfig();
             Local.log("&6[MonsterHamster] &aConfig.yml load");
-        }else{
+        } else {
             Local.log("&6[MonsterHamster] &aConfig.yml created");
         }
     }

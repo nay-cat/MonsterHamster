@@ -25,28 +25,30 @@ public class KillBossListener implements Listener {
     @EventHandler
     public void onBossDeath(EntityDeathEvent e){
         String prefix = plugin.getMessages().getString("Messages.prefix");
-        if(e.getEntity().getKiller().getType().equals(EntityType.PLAYER)){
-        EntityType entityBoss = e.getEntity().getType();
-        if(entityBoss == EntityType.SKELETON) {
-            Skeleton skellyBoss = (Skeleton) e.getEntity();
-            ItemStack helmet = skellyBoss.getEquipment().getHelmet();
-            Integer level = helmet.getEnchantmentLevel(Enchantment.DURABILITY);
-            if (level == 3) {
-                String broadcastKill = plugin.getMessages().getString("Messages.bossDeathBroadcast");
+        if(!e.getEntity().getKiller().getType().equals(EntityType.PLAYER)) return;
+            EntityType entityBoss = e.getEntity().getType();
+            if(entityBoss == EntityType.SKELETON) {
+                Skeleton skellyBoss = (Skeleton) e.getEntity();
+                ItemStack helmet = skellyBoss.getEquipment().getHelmet();
+                int level = helmet.getEnchantmentLevel(Enchantment.DURABILITY);
+                if (level == 3) {
+                    String broadcastKill = plugin.getMessages().getString("Messages.bossDeathBroadcast");
+                    /*
+                    Identificar a la entidad de forma fácil  (Sin necesidad de revisar su encantamiento de casco (Pendiente)
+                     */
+                    Local.bdc(prefix + broadcastKill.replaceAll("%killer%", e.getEntity().getKiller().getName()).replaceAll("%boss%", e.getEntity().getName()));
 
-                Local.bdc(prefix + broadcastKill.replaceAll("%killer%", e.getEntity().getKiller().getName()).replaceAll("%boss%", e.getEntity().getName()));
-
-                PlayerRegister.playerRegister(e.getEntity().getKiller().getUniqueId());
+                    PlayerRegister.playerRegister(e.getEntity().getKiller().getUniqueId());
 
 
 
             }
 
-        }else{
+            }else{
 
         }
 
-        }
+
 
         }
 
