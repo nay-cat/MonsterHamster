@@ -6,9 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Inventory;
 
 public class CreateInventory {
-    private MonsterHamster plugin;
     public CreateInventory(MonsterHamster plugin) {
-        this.plugin = plugin;
     }
 
 

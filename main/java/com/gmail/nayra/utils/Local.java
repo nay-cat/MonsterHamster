@@ -14,7 +14,7 @@ public class Local {
 
 
     public static void log(String msg){
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6[MonsterHamster] "+msg));
     }
 
     public static void bdc(String msg){

@@ -1,5 +1,6 @@
 package com.gmail.nayra.gui.items;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

@@ -7,11 +7,22 @@ description: Go hunt bosses and get rewards
 commands:
   monsterhamster:
     description: Command
+    aliases: [mhamster]
   monstersummon:
     description: Summon bosses
+    aliases: [msummon]
   bosspoints:
     description: See your points
-    aliases: [bpoints]
+    aliases: [bpoints, mpoints]
   bshop:
     description: Open the shop gui
-    aliases: [bosshop, bossshop, monsterhamstershop]
+    aliases: [mshop, bosshop, bossshop, monsterhamstershop]
+  menchant:
+    description: Enchant weapons
+    aliases: [monsterhamsterenchant, benchant]
+  msetspawn:
+    description: Set boss spawn
+    aliases: [monsterhamstersetspawn, bossspawn, setbossspawn]
+  mmodify:
+    description: Modify player stats
+    aliases: [pointsmodify]

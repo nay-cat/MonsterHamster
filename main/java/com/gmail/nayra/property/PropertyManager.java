@@ -9,6 +9,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -23,21 +24,26 @@ public class PropertyManager implements Listener {
 
     @EventHandler
     public void onBossAttackUseAbility(EntityDamageByEntityEvent e) {
-            EntityType entityBoss = e.getEntity().getType();
-            if (entityBoss == EntityType.SKELETON && e.getDamager().getType().equals(EntityType.PLAYER)) {
-                Skeleton skellyBoss = (Skeleton) e.getEntity();
-                ItemStack helmet = skellyBoss.getEquipment().getHelmet();
-                Integer level = helmet.getEnchantmentLevel(Enchantment.DURABILITY);
-                if (level == 3) {
-                    RandomNumber rn = new RandomNumber();
-                    if(rn.getRandonNumber(100) > 50){
+        EntityType entityBoss = e.getEntity().getType();
+        if (entityBoss == EntityType.SKELETON && e.getDamager().getType().equals(EntityType.PLAYER)) {
+
+            if (e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
+                e.getDamager().teleport(e.getEntity().getLocation());
+            } else {
+
+            Skeleton skellyBoss = (Skeleton) e.getEntity();
+            ItemStack helmet = skellyBoss.getEquipment().getHelmet();
+            int level = helmet.getEnchantmentLevel(Enchantment.DURABILITY);
+            if (level == 3) {
+                RandomNumber rn = new RandomNumber();
+                if (rn.getRandonNumber(100) > 50) {
 
                     Player abilityPlayer = (Player) e.getDamager();
                     List<String> bossAbilityList = plugin.getConfig().getStringList("Config.Abilities");
                     RandomAbility rd = new RandomAbility();
                     String randomAbilitySuperName = rd.getRandomAbility(bossAbilityList);
 
-                    switch(randomAbilitySuperName){
+                    switch (randomAbilitySuperName) {
 
                         case "lighting":
                             abilityPlayer.getWorld().strikeLightning(abilityPlayer.getLocation());
@@ -51,12 +57,15 @@ public class PropertyManager implements Listener {
 
                             skellyBoss.launchProjectile(Fireball.class);
                             break;
+                        case "teleport":
 
+                            abilityPlayer.teleport(skellyBoss.getLocation());
+                            break;
                     }
-                    }
-
                 }
-            }
 
+            }
+        }
+    }
     }
 }

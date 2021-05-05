@@ -24,7 +24,16 @@ public class PluginCommand implements CommandExecutor {
 
         if (args.length == 0) {
             if (sender.hasPermission("monsterhamster.admin")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "Test"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lMonsterHamster: "+plugin.version));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9/mmodify"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9/msetspawn"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9/mshop"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9/msummon <monster>"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9/mhamster reload"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9/menchant <Enchant>"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lAlpha: "+plugin.version));
+
+
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix+noPermission));
             }

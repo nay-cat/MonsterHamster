@@ -1,10 +1,12 @@
 package com.gmail.nayra.commands;
 
 import com.gmail.nayra.MonsterHamster;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 
 public class ShopCommand implements CommandExecutor {
 
@@ -18,8 +20,13 @@ public class ShopCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             Player p = (Player)sender;
+        if(p.hasPermission("monsterhamster.shop")){
             p.openInventory(plugin.shop);
-            p.sendMessage("Trying");
+
+        }else{
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.prefix+plugin.getMessages().getString("Messages.noPermission")));
+        }
+
 
         }
 

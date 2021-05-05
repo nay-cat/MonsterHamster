@@ -1,10 +1,72 @@
 Config:
+  #Uses less resources making for servers lot of players easier
+  NetworkMode: false
+  spawnTimer: true
+  # In ticks -> https://www.mapmaking.fr/tick/ # Default 30 minutes
+  spawnTime: 36000
+  # Max 32
+  rewardKillBoss: 1
   ShopGui:
     name: "MonsterShop"
+  spawnBroadcast: true
+  Enchantments:
+    Load_Enchantments: true
+    Active_Enchantments: true
+    PoisonTime: 50
+    PoisonLevel: 2
+    FreezeTime: 75
+    Healer:
+      HealerEnchantment: true
+      HealerDamage: 2.5
+      HealerStopHeal: 2.5
+    Vampirism:
+      HealthRob: 2.5
+      # 8 of every 10 hits Max: 9 (Rare), Min 1 (Common)
+      Probability: 8
+    Smelting:
+      SmeltingEnchantment: true
+      SmeltOres: true
+      SmeltBlocks: true
+    Items:
+      firebow: "Legendary Firebow"
+      freezeaxe: "Legendary Dread Axe"
+      smeltingpickaxe: "Legendary Furnace-Pickaxe"
+      poisonsword: "Legendary Hydra Sword"
+      healerhoe: "Legendary Healer Stick"
+      bloodsword: "Bloodest Sword"
+      flyboots: "Dragonflight Boots"
+  Shop:
+    BossCoin:
+      name: "Boss Coin"
+      price: 1
+    PoisonBook:
+      name: "Poison Enchantment"
+      price: 1
+    FireballBook:
+      name: "Fireball Enchantment"
+      price: 2
+    SmeltingBook:
+      name: "Smelting Enchantment"
+      price: 3
+    HealerBook:
+      name: "Healer Enchantment"
+      price: 4
+    VampirismBook:
+      name: "Vampirism Enchantment"
+      price: 5
+    FlyBook:
+      name: "Fly Enchantment"
+      price: 6
+    FreezeBook:
+      name: "Freeze Book"
+      price: 7
   Abilities:
     - "lighting"
     - "shoot"
     - "poison"
+    - "teleport"
+  AllowBosses:
+    - examplemonster
   Monsters:
     examplemonster:
       name: '&cBenja'
@@ -17,11 +79,4 @@ Config:
       effect_multiplier: 2
       effects:
         - NIGHT_VISION
-      reward: 1
-      rank_multiplier: 2
-      inventory:
-        helmet: DIAMOND_CHESTPLATE
-        chestplate: DIAMOND_HELMET
-        leggings: DIAMOND_LEGGINGS
-        boots: DIAMOND_BOOTS
-        mainhand: DIAMOND_SWORD
+

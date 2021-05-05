@@ -23,4 +23,9 @@ public class StorageUtil {
         hm.getPlayerData().set("Players." + playerID + ".bosspoints", additionCoin);
         hm.saveData();
     }
+
+    public int getPoints(UUID playerID){
+        Integer coinNumber = hm.getPlayerData().getInt("Players." + playerID + ".bosspoints");
+        return coinNumber;
+    }
 }

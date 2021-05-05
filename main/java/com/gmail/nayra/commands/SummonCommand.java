@@ -5,24 +5,16 @@ import com.gmail.nayra.utils.Local;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.w3c.dom.Attr;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class SummonCommand implements CommandExecutor {
     private MonsterHamster plugin;
@@ -75,7 +67,7 @@ public class SummonCommand implements CommandExecutor {
                             try {
                                 effect = PotionEffectType.getByName(s);
                             } catch (Exception error) {
-                                Local.log("&6[MonsterHamster] &cAn error has ocurred: " + error);
+                                Local.log("&cAn error has ocurred: " + error);
                                 break;
                             }
                             Integer multiplier = config.getInt("Config.Monsters." + args[0] + ".effect_multiplier");
