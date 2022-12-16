@@ -1,2 +1,6 @@
 
-Proyecto bastante antiguo que encontre y subí, no juzgar y ver mejor los actuales.
+
+
+
+Proyecto bastante MUY antiguo que encontre y subí
+Está hecho como la mierda XD
